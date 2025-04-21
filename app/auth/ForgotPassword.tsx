@@ -1,15 +1,32 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { auth } from '../../services/firebase'; // Make sure this path is correct
 
 const ForgotPasswordScreen = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handlePasswordReset = () => {
-    // Handle Firebase Password Reset Logic Here
-    alert('Password reset link sent to your email.');
+  const handlePasswordReset = async () => {
+    if (!email) {
+      Alert.alert('Missing Email', 'Please enter your email address');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await sendPasswordResetEmail(auth, email);
+      Alert.alert('Success', 'Password reset link sent to your email.');
+      router.push('/auth/Login');
+    } catch (error: any) {
+      console.log('Password Reset Error:', error);
+      Alert.alert('Error', error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -24,10 +41,11 @@ const ForgotPasswordScreen = () => {
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
+        autoCapitalize="none"
       />
 
-      <TouchableOpacity style={styles.button} onPress={handlePasswordReset}>
-        <Text style={styles.buttonText}>Reset Password</Text>
+      <TouchableOpacity style={styles.button} onPress={handlePasswordReset} disabled={loading}>
+        <Text style={styles.buttonText}>{loading ? 'Sending...' : 'Reset Password'}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => router.push('/auth/login')}>

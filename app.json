@@ -2,21 +2,24 @@
   "expo": {
     "name": "moovx-rider",
     "slug": "moovx-rider",
+    "entryPoint": "expo-router/entry",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/moovxlogo.png",
     "scheme": "moovxrider",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "permissions": ["LOCATION_WHEN_IN_USE"]
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/moovxlogo.png",
         "backgroundColor": "#0000FF"
       },
-      "package": "com.moovx.rider"
+      "package": "com.moovx.rider",
+      "permissions": ["android.permission.ACCESS_FINE_LOCATION"]
     },
     "web": {
       "bundler": "metro",
@@ -24,20 +27,27 @@
       "favicon": "./assets/images/moovxlogo.png"
     },
     "splash": {
-      "image": "./assets/images/bg1.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#0000FF"
+      "image": "./assets/images/moovxlogo.png",
+      "resizeMode": "cover"
     },
     "experiments": {
       "typedRoutes": true
     },
     "plugins": [
-      "expo-font"
+      "expo-font",
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow Moovx Rider to access your location for ride booking."
+        }
+      ]
     ],
     "extra": {
       "eas": {
         "projectId": "5f050d47-ef27-4cb4-9c37-026b08608074"
-      }
+      },
+      "tomtomApiKey": "7wjmlJ32cE1FKkAlTpAtCcIUiNRxA7Kc"
     }
   }
 }
