@@ -2,52 +2,37 @@
   "expo": {
     "name": "moovx-rider",
     "slug": "moovx-rider",
-    "entryPoint": "expo-router/entry",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/moovxlogo.png",
-    "scheme": "moovxrider",
+    "icon": "./assets/images/icon.png",
+    "scheme": "moovx-rider",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
-      "permissions": ["LOCATION_WHEN_IN_USE"]
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/moovxlogo.png",
-        "backgroundColor": "#0000FF"
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
       },
       "package": "com.moovx.rider",
-      "permissions": ["android.permission.ACCESS_FINE_LOCATION"]
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/moovxlogo.png"
+      "favicon": "./assets/images/favicon.png"
     },
-    "splash": {
-      "image": "./assets/images/moovxlogo.png",
-      "resizeMode": "cover"
-    },
+    "plugins": ["expo-router"],
     "experiments": {
       "typedRoutes": true
     },
-    "plugins": [
-      "expo-font",
-      "expo-secure-store",
-      [
-        "expo-location",
-        {
-          "locationWhenInUsePermission": "Allow Moovx Rider to access your location for ride booking."
-        }
-      ]
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "5f050d47-ef27-4cb4-9c37-026b08608074"
-      },
-      "tomtomApiKey": "7wjmlJ32cE1FKkAlTpAtCcIUiNRxA7Kc"
-    }
+    "jsEngine": "hermes"
   }
 }

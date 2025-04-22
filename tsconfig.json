@@ -1,37 +1,20 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "jsx": "react-native",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@app/*": ["app/*"],
-      "@components/*": ["components/*"],
-      "@services/*": ["services/*"],
-      "@assets/*": ["assets/*"],
-      "@constants/*": ["constants/*"],
-      "@hooks/*": ["hooks/*"],
-      "@ui/*": ["components/ui/*"],
-      "@utils/*": ["utils/*"]
+      "@/*": [
+        "*"
+      ]
     },
-    "types": ["expo", "firebase"]
+    "types": [
+      "./firebase.d.ts"
+    ]
   },
   "include": [
-    "app/**/*",
-    "components/**/*",
-    "services/**/*",
-    "constants/**/*",
-    "hooks/**/*",
-    "utils/**/*",
+    "**/*.ts",
+    "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ]

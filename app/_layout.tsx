@@ -1,46 +1,11 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import { Platform } from 'react-native';
-import 'react-native-reanimated';
-import { useColorScheme } from 'react-native';
 import { Stack } from 'expo-router';
 
-if (Platform.OS !== 'web') {
-  SplashScreen.preventAutoHideAsync();
-}
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded && Platform.OS !== 'web') {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
-  const theme = colorScheme === 'dark' ? DarkTheme : DefaultTheme;
-
-  return (
-    <ThemeProvider value={theme}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="auth/Login" />
-        <Stack.Screen name="auth/Signup" />
-        <Stack.Screen name="auth/ForgotPassword" />
-        <Stack.Screen name="dashboard/rider" />
-        <Stack.Screen name="dashboard/user" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
-}
+     export default function Layout() {
+       return (
+         <Stack>
+           <Stack.Screen name="index" options={{ title: 'Home' }} />
+           <Stack.Screen name="screens/booking" options={{ title: 'Book a Ride' }} />
+           <Stack.Screen name="screens/MapScreen" options={{ title: 'Map' }} />
+         </Stack>
+       );
+     }

@@ -1,4 +1,4 @@
-// firebase.d.ts
-declare module 'firebase/app';
-declare module 'firebase/auth';
-declare module 'firebase/firestore';
+declare module 'firebase/auth' {
+  export function getReactNativePersistence(persistence: any): any;
+  export function initializeAuth(app: any, options?: any): any;
+}
